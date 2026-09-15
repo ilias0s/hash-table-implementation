@@ -14,5 +14,6 @@ public:
 	hashtable();
 	void push(int k,std::string v);
 	entity pull(int k);
+	void remove(int key);
 	
 };

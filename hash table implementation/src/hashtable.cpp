@@ -51,3 +51,26 @@ entity hashtable::pull(int k)
 	else
 		throw std::runtime_error("invalid key");
 }
+void hashtable::remove(int k)
+{
+	int index = hash(k);
+
+	entity* current = arr[index];
+	entity* previous = nullptr;
+
+	while (current != nullptr && current->key != k)
+	{
+		previous = current;
+		current = current->next;
+	}
+
+	if (current == nullptr)
+		throw std::runtime_error("invalid key");
+
+	if (previous == nullptr)
+		arr[index] = current->next;
+	else
+		previous->next = current->next;
+
+	delete current;
+}
