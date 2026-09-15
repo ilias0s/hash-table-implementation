@@ -20,10 +20,16 @@ void hashtable::push(int k, std::string v)
 		arr[index] = new entity{ k,v };
 		return;
 	}
-	entity* current = arr[index];
 
-	while (current->next != nullptr)
+	entity* current = arr[index];
+	
+	while (current != nullptr)
 	{
+		if (current->key == k)
+		{
+			current->value = v;
+			return;
+		}
 		current = current->next;
 	}
 
@@ -73,4 +79,18 @@ void hashtable::remove(int k)
 		previous->next = current->next;
 
 	delete current;
+}
+hashtable::~hashtable()
+{
+	for (auto& i : arr)
+		{
+		entity* current = i;
+
+		while (current != nullptr)
+		{
+			entity* temp = current;
+			current = current->next;
+			delete temp;
+		}
+	}
 }

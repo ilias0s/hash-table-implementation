@@ -15,5 +15,6 @@ public:
 	void push(int k,std::string v);
 	entity pull(int k);
 	void remove(int key);
+	~hashtable();
 	
 };
